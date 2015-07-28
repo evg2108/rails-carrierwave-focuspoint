@@ -1,0 +1,38 @@
+.focuspoint-control {
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+.focuspoint-control img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.focuspoint-control img.focuspoint-control-target {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transition: all 500ms ease-in-out;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+}
+
+.focuspoint-control img.focuspoint-control-target-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.focuspoint-control img.focuspoint-control-target-overlay {
+    cursor: pointer;
+    opacity: 0.01;
+}
