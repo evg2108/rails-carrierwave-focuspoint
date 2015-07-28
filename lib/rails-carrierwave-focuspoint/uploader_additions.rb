@@ -5,7 +5,7 @@ module FocuspointRails
       if self.respond_to? "resize_to_limit"
         begin
           x = model.focus_x || 0
-          y = -model.focus_y || 0
+          y = -(model.focus_y || 0)
 
           manipulate! do |img|
             orig_w = img['width']
