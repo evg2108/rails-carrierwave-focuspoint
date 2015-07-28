@@ -3,14 +3,12 @@ module FocuspointHelper
     attachment_instance = self.object.send(attachment)
 
     if(attachment_instance.is_a? CarrierWave::Uploader::Base)
-      model_name = self.object.class.name.demodulize.underscore
-
-      @template.content_tag(:div, class: 'focuspoint-control', style: 'display: none;') do
+      @template.content_tag(:div, class: 'focuspoint-control', style: ('display: none;' if self.object.new_record?)) do
         @template.concat @template.image_tag(attachment_instance.url, class: 'focuspoint-control-image')
         @template.concat @template.image_tag('focuspoint-target.png', class: 'focuspoint-control-target')
         @template.concat @template.image_tag(attachment_instance.url, class: 'focuspoint-control-target-overlay')
         [:focus_x ,:focus_y].each do |attribute|
-          @template.concat @template.hidden_field_tag("#{model_name}[#{attribute}]", nil, id: "#{model_name}_#{attribute}", class: attribute)
+          @template.concat self.hidden_field attribute, class: attribute
         end
       end
     end

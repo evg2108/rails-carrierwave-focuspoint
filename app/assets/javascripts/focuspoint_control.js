@@ -8,6 +8,35 @@ document.focuspoint = (function() {
         }
     };
 
+    var bind_click_event = function(e){
+
+        var imageW = $(this).width();
+        var imageH = $(this).height();
+
+        //Calculate FocusPoint coordinates
+        var offsetX = e.pageX - $(this).offset().left;
+        var offsetY = e.pageY - $(this).offset().top;
+        var focusX = (offsetX/imageW - 0.5)*2;
+        var focusY = (offsetY/imageH - 0.5)*(-2);
+        internal.focusPointAttr.x = focusX;
+        internal.focusPointAttr.y = focusY;
+        internal.input_x.val(internal.focusPointAttr.x);
+        internal.input_y.val(internal.focusPointAttr.y);
+
+        if (exports.options.debug) {
+            console.log(internal.focusPointAttr.x);
+            console.log(internal.focusPointAttr.y);
+        }
+
+        //Leave a sweet target reticle at the focus point.
+        var percentageX = (offsetX/imageW)*100;
+        var percentageY = (offsetY/imageH)*100;
+        $('.focuspoint-control-target').css({
+            'top':percentageY+'%',
+            'left':percentageX+'%'
+        });
+    }
+
     var readURL = function(input)
     {
         if (input.files && input.files[0]) {
@@ -20,34 +49,7 @@ document.focuspoint = (function() {
                         internal.current_image_width = this.width;
                         internal.current_image_height = this.height;
 
-                        internal.focuspoint_control_target_overlay.on('click', function(e){
-
-                            var imageW = $(this).width();
-                            var imageH = $(this).height();
-
-                            //Calculate FocusPoint coordinates
-                            var offsetX = e.pageX - $(this).offset().left;
-                            var offsetY = e.pageY - $(this).offset().top;
-                            var focusX = (offsetX/imageW - 0.5)*2;
-                            var focusY = (offsetY/imageH - 0.5)*(-2);
-                            internal.focusPointAttr.x = focusX;
-                            internal.focusPointAttr.y = focusY;
-                            internal.input_x.val(internal.focusPointAttr.x);
-                            internal.input_y.val(internal.focusPointAttr.y);
-
-                            if (exports.options.debug) {
-                                console.log(internal.focusPointAttr.x);
-                                console.log(internal.focusPointAttr.y);
-                            }
-
-                            //Leave a sweet target reticle at the focus point.
-                            var percentageX = (offsetX/imageW)*100;
-                            var percentageY = (offsetY/imageH)*100;
-                            $('.focuspoint-control-target').css({
-                                'top':percentageY+'%',
-                                'left':percentageX+'%'
-                            });
-                        });
+                        internal.focuspoint_control_target_overlay.on('click', bind_click_event);
                     });
                 }
 
@@ -83,6 +85,18 @@ document.focuspoint = (function() {
             internal.focuspoint_control_target_overlay = internal.focuspoint_control.find('img.focuspoint-control-target-overlay');
             if (internal.focuspoint_control_target_overlay.length == 0) {
                 throw "element '" + internal.focuspoint_control_selector + " img.focuspoint-control-target-overlay" + "' not found";
+            }
+
+            if (internal.focuspoint_control_image.attr('src')) {
+                internal.image_loaded = true;
+                internal.current_image_width = internal.focuspoint_control_image.width();
+                internal.current_image_height = internal.focuspoint_control_image.height();
+
+                $('.focuspoint-control-target').css({
+                    'top': (((internal.input_y.val() || 0) / (-2)) + 0.5) * 100 + '%',
+                    'left': (((internal.input_x.val() || 0) / 2) + 0.5) * 100 + '%'
+                });
+                internal.focuspoint_control_target_overlay.on('click', bind_click_event);
             }
         }
         exports.options = options;
