@@ -2,7 +2,7 @@
 
 CarrierWave extension for specifying focus point on image before they upload on server and cropped.
 
-This gem based on jquery.focuspoint javascript library - https://github.com/jonom/jquery-focuspoint
+This gem based on [helper tool](http://jonom.github.io/jquery-focuspoint/demos/helper/index.html) of jquery.focuspoint javascript library (https://github.com/jonom/jquery-focuspoint)
 
 ## Installation
 
