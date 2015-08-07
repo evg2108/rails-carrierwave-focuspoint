@@ -14,6 +14,17 @@ in Gemfile
 
 ## Usage
 
+For using this gem you must add fields `focus_x:decimal` and `focus_y:decimal` to your db table used for storing CarrierWave picture information. Use migration:
+
+```Ruby
+    class AddFocusToUsers < ActiveRecord::Migration
+      def change
+        add_column :users, :focus_x, :decimal
+        add_column :users, :focus_y, :decimal
+      end
+    end
+```
+
 in CarrierWave uploader
 
 ```Ruby
