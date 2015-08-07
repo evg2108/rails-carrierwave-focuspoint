@@ -24,7 +24,7 @@ module FocuspointRails
               half_w = w / 2.0
               half_orig_w = orig_w / 2.0
 
-              x_offset = x * half_w
+              x_offset = x * half_orig_w
 
               x_offset = (x <=> 0.0) * (half_orig_w - half_w) if x != 0 && x_offset.abs > half_orig_w - half_w
             elsif ratio > orig_ratio
@@ -33,7 +33,7 @@ module FocuspointRails
               half_h = h / 2.0
               half_orig_h = orig_h / 2.0
 
-              y_offset = y * half_h
+              y_offset = y * half_orig_h
 
               y_offset = (y <=> 0.0) * (half_orig_h - half_h) if y != 0 && y_offset.abs > half_orig_h - half_h
             end
