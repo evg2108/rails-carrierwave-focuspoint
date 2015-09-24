@@ -93,6 +93,3 @@ PLATFORMS
 DEPENDENCIES
   jquery-rails
   rails-carrierwave-focuspoint!
-
-BUNDLED WITH
-   1.10.6
