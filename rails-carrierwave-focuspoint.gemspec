@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ['evg2108']
   s.email       = ['evg2108@yandex.ru']
   # s.homepage    = 'https://github.com/evg2108/rails-carrierwave-focusprint'
-  s.summary     = 'RailsCarrierwaveFocuspoint is a wrapper for jquery-focuspoint library.'
-  s.description = 'RailsCarrierwaveFocuspoint is a wrapper for jquery-focuspoint library.'
+  s.summary     = 'CarrierWave extension for specifying focus point on image before they upload on server and cropped.'
+  s.description = 'CarrierWave extension for specifying focus point on image before they upload on server and cropped.'
 
   s.files = Dir['{app,config,db,lib}/**/*'] + %w(MIT-LICENSE Rakefile README.md)
 
