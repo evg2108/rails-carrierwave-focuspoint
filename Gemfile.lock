@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-carrierwave-focuspoint (0.0.2)
+    rails-carrierwave-focuspoint (0.0.3)
       rails (~> 3.2.21)
 
 GEM
@@ -93,3 +93,6 @@ PLATFORMS
 DEPENDENCIES
   jquery-rails
   rails-carrierwave-focuspoint!
+
+BUNDLED WITH
+   1.10.6
